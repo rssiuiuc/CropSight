@@ -35,10 +35,10 @@ With the `panoid` of collected GSV metadata, the corresponding GSV panoramic ima
 </p>
 
 #### 2.2 GSV panoramic image clipping
-The two roadsides street view images are retrived from the original GSV panoramic images using an [equirectangular-toolbox](https://github.com/NitishMutha/equirectangular-toolbox), which is built upon the [Gnomonic Projection](https://mathworld.wolfram.com/GnomonicProjection.html). This tool supports the extraction of a normal field of view from a panoramic image, centered on any point you choose. The implementation is highly optimized for speed and efficiency, computing every pixel projection mapping at once. It uses bilinear interpolation to create smoother images, resulting in a more realistic and immersive viewing experience.
+The two roadsides street view images are retrived from the original GSV panoramic images using an function `NFOV`. This function supports the extraction of a normal field of view from a panoramic image, centered on any point you choose. The implementation is highly optimized for speed and efficiency, computing every pixel projection mapping at once. It uses bilinear interpolation to create smoother images, resulting in a more realistic and immersive viewing experience.
 
 <p align="center">
-  <img src="src/QDWxWb7c1sVcLeoquYPTHw_41.54170024691091_-88.29999867944885_2021_8_358.7471008300781.jpg" width="450">
+  <img src="src/Panoramic clipping.gif" width="1000"  loopcount="1">
   <br>
   <b>The avaiable GSV metadata.</b>
 </p>
