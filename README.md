@@ -20,14 +20,9 @@ Function `collectGSV` has `panoids = streetview.panoids(lat=x, lon=y)` it.
 </p>
 
 ### 2. GSV roadside images preparation
-With the `panoid` of collected GSV metadata, the corresponding GSV panoramic images can be downloaded from Google Maps Platform through function `downloadGSV`. The orientation that the vehicle headed when collecting the GSV panoramic images is also retrived through `downloadGSV`. For example,  one GSV image is avaiable at location of (41.54170024691091,-88.29999867944885), and the vehicle was heading to 271° when collecting this GSV panoramic image. The north rotation is 271°.
-
-
-
-
 
 #### 2.1 GSV panoramic image downloading
-
+With the `panoid` of collected GSV metadata, the corresponding GSV panoramic images can be downloaded from Google Maps Platform through function `downloadGSV`. The orientation that the vehicle headed when collecting the GSV panoramic images is also retrived through `downloadGSV`. For example,  one GSV image is avaiable at location of (41.54170024691091,-88.29999867944885), and the vehicle was heading to 271° when collecting this GSV panoramic image. The north rotation is 271°.
 <p align="center">
   <img src="src/QDWxWb7c1sVcLeoquYPTHw_41.54170024691091_-88.29999867944885_2021_8_358.7471008300781_pano.jpg" width="450">
   <br>
@@ -43,15 +38,16 @@ The two roadsides street view images are retrived from the original GSV panorami
   <b>The avaiable GSV metadata.</b>
 </p>
 
-### 3. GSV image classification (ViTResFusionNet)
+### 3. GSV image classification
 
 #### 3.1 Training and test dataset preparation
-In order to collect the representative crop species GSV images, the view of GSV images is analysed 
+More than millisions GSV images are collected once year, which includes various scenes, building, house, trees, etc. In order to collect the representative GSV images of crop species from massive GSV images, the GSV images are roughly labelled with the auxiliary **Cropland data layer (CDL)** and selcted with **a sampling stratege**. CDL is a raster, geospatial dataset created by the United States Department of Agriculture (USDA) that provides information about the type of crops grown on agricultural lands in the United States. The CDL is produced annually and provides data for every state in the US. The CDL is based on satellite imagery and other remote sensing data and uses a supervised classification algorithm to identify the crop type on each pixel of the image. The crop types identified in the CDL include grains, oilseeds, cotton, fruits, vegetables, and hay. With the specific location 
 
-the percentage of crop species that each GSV corresponds to is calculated using Cropland data layer (CDL). According to the orientation information and CDL, the 
+. The view of GSV images is analysed Cropland data layer (CDL).
+the GSV images is selected based on the percentage of crop species that each GSV corresponds to. It is calculated using Cropland data layer (CDL). According to the orientation information and CDL, the 
 
 
-#### 3.2 Model training
+#### 3.2 Model (ViTResFusionNet) training 
 [Google colab](https://colab.research.google.com/drive/1WsbVxqH2A7FrLV7guVRx4HaEU6cwz2aJ#scrollTo=2y4QtgcoA9De&line=1&uniqifier=1)
 
 
@@ -64,3 +60,8 @@ mages and aerial imagery at a resolution of 1-meter (National Agriculture Imager
 
 ## Acknowledgement
 This project is supported by the National Science Foundation’s Office of Advanced Cyberinfrastructure under grant 1849821
+
+
+
+
+
