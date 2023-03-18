@@ -19,17 +19,20 @@ Function `downloadGSV` has `panoids = streetview.panoids(lat=x, lon=y)` it.
   <b>The avaiable GSV metadata.</b>
 </p>
 
-### 2. GSV panoramic image downloading & processing
+### 2. GSV roadside images preparation
+#### 2.1 GSV panoramic image downloading
 
-### 3. GSV image classification ()
+#### 2.2 GSV panoramic image clipping
 
-#### 3.1 GSV metadata proprecessing
+### 3. GSV image classification (ViTResFusionNet)
+
+#### 3.1 Training and test dataset preparation
 In order to collect the representative crop species GSV images, the view of GSV images is analysed 
 
 the percentage of crop species that each GSV corresponds to is calculated using Cropland data layer (CDL). According to the orientation information and CDL, the 
 
 
-#### 3.2 retrive Google Street View panoramic images from Google Maps Websites, 
+#### 3.2 Model training
 [Google colab](https://colab.research.google.com/drive/1WsbVxqH2A7FrLV7guVRx4HaEU6cwz2aJ#scrollTo=2y4QtgcoA9De&line=1&uniqifier=1)
 
 
