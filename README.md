@@ -21,7 +21,7 @@ The collectGSV function includes panoids = streetview.panoids(lat=x, lon=y).
   <b>The avaiable GSV metadata.</b>
 </p>
 
-#### 1.2 Download GSV panoramic image 
+#### 1.2 Download GSV panoramic images 
 With the `panoid` of collected GSV metadata, the corresponding GSV panoramic images can be downloaded from Google Maps Platform through function `downloadGSV`. The orientation that the vehicle headed when collecting the GSV panoramic images is also retrived through `downloadGSV`. For example,  one GSV image is avaiable at location of (41.54170024691091,-88.29999867944885), and the vehicle was heading to 271° when collecting this GSV panoramic image. The north rotation is 271°.
 <p align="center">
   <img src="src/QDWxWb7c1sVcLeoquYPTHw_41.54170024691091_-88.29999867944885_2021_8_358.7471008300781_pano.jpg" width="450">
@@ -29,7 +29,7 @@ With the `panoid` of collected GSV metadata, the corresponding GSV panoramic ima
   <b>The avaiable GSV metadata.</b>
 </p>
 
-#### 1.3 Extract GSV roadsides image
+#### 1.3 Extract GSV roadsides images
 The two roadsides street view images are retrived from the original GSV panoramic images using an function `NFOV`. This function supports the extraction of a normal field of view from a panoramic image, centered on any point you choose. The implementation is highly optimized for speed and efficiency, computing every pixel projection mapping at once. It uses bilinear interpolation to create smoother images, resulting in a more realistic and immersive viewing experience.
 
 <p align="center">
