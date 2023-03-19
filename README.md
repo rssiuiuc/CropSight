@@ -54,7 +54,7 @@ The sampling strategy is a dynamic sampling method which changes according to th
 <p align="center">
   <img src="src/VitResnet.jpg" width="1000" >
   <br>
-  <b>The avaiable GSV metadata.</b>
+  <b>ViTResFusionNet Architecture </b>
 </p>
 
 Demo:
