@@ -34,7 +34,7 @@ After collecting the GSV metadata with the [`collectGSV`](https://colab.research
 <p align="center">
   <img src="src/QDWxWb7c1sVcLeoquYPTHw_41.54170024691091_-88.29999867944885_2021_8_358.7471008300781_pano.jpg" width="450">
   <br>
-  <b>Sample of one GSV panoramic image.</b>
+  <b>Sample of GSV panoramic image.</b>
 </p>
 
 #### 1.3 Extract roadside GSV Images
