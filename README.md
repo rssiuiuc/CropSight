@@ -1,15 +1,21 @@
 # Crop-type-information-retrieval-from-Google-Street-View-images
+
+![Project Status](https://img.shields.io/badge/status-work%20in%20progress-yellow)
+
 ## About
 
-The Crop Type Information Retrieval (CTIR) Framework is an open-source toolkit that automatically retrieves field-level crop type information from massive Google Street View (GSV) images. This scalable framework enables the efficient collection of GSV images from the Google Maps Platform and the automatic identification of GSV images to generate in-situ crop-type labels over large areas. The CTIR framework supports the complete workflow of automatically retrieving ground truth labels of croplands, including GSV metadata collection, GSV panoramic image downloading and processing, and GSV image classification. This open-source toolkit aims to enhance agricultural development by collecting accurate ground truth data of crop types from open-source data sources. This data can be used by researchers and practitioners across multiple disciplines to develop effective solutions for agriculture-related problems. By using this toolkit, users can improve the accuracy of crop classification, yield estimation, and other agricultural applications.
+Collecting accurate ground truth data of crop types is a crucial challenge for agricultural research and development. The Crop Type Information Retrieval (CTIR) Framework is an open-source toolkit designed to automate the process of retrieving field-level crop type information from massive Google Street View (GSV) images. With its scalable and efficient features, the CTIR Framework enables the automatic identification of GSV images to generate in-situ crop-type labels over large areas.
+
+The CTIR Framework supports the complete workflow of automatically retrieving ground truth labels of croplands, including GSV metadata collection, GSV panoramic image downloading and processing, and GSV image classification. This open-source toolkit aims to enhance agricultural development by collecting accurate ground truth data of crop types from open-source data sources. By using the CTIR Framework, researchers and practitioners across multiple disciplines can develop effective solutions for agriculture-related problems, such as crop classification and yield estimation.
+
+This repository contains code for automatically generating crop type labels for agricultural parcels using Google Street View images and 1-meter resolution aerial imagery from the National Agriculture Imagery Program (NAIP). The CTIR framework will be tested in four study areas across the United States: Illinois, the South, Texas, and California. Location-specific deep learning models are developed to classify the dominant crop species in each study area. For instance, in the southern region of the United States, the dominant crop species include corn, soybean, rice, and cotton. The framework has been successfully tested for generating crop type labels in the southern region of the United States.
 
 
 ## Workflow of CTIR
 ### 1. GSV roadside images collection
 #### 1.1 Collect GSV metadata 
-[Google colab](https://colab.research.google.com/drive/1WsbVxqH2A7FrLV7guVRx4HaEU6cwz2aJ#scrollTo=dxYrIqi1AmZG&line=1&uniqifier=1)
 
-The collectGSV function includes panoids = streetview.panoids(lat=x, lon=y).
+The [`collectGSV`](https://colab.research.google.com/drive/1WsbVxqH2A7FrLV7guVRx4HaEU6cwz2aJ#scrollTo=dxYrIqi1AmZG&line=1&uniqifier=1) function retrieves Google Street View (GSV) metadata using the `panoids = streetview.panoids(lat=x, lon=y)` line of code. The panorama IDs will be retrieved at a given location (lat and lon) if GSV images are available around the location. This metadata describes the IDs, location, orientation, and time of available GSV panoramas. 
 
 ```javascript
 [{'panoid': 'E9DDnTQsKTcgpH9NHI6MaA', 'lat': 39.36998876974609, 'lon': -91.47946938753894, 'year': 2009, 'month': 3}, {'panoid': '17hKTtanmJahKVoRW2K25w', 'lat': 39.36997271381018, 'lon': -91.47946938753894, 'year': 2021, 'month': 12}, {'panoid': '3Tm5g6lPAjClKQEdQIqc5g', 'lat': 39.36984071070807, 'lon': -91.47946909232498}, {'panoid': 'brlitF-PRFlM4mK_VYbHFg', 'lat': 39.3701044774849, 'lon': -91.47946983035992}, {'panoid': 'piNgln2_TUk-iKbqTzNkzA', 'lat': 39.36957715579746, 'lon': -91.47947027318088}, {'panoid': 'KWthHUJiJvfeCRwLSqQaAA', 'lat': 39.36970869798013, 'lon': -91.47946953514592}, {'panoid': 'ASq1hW2FU34tsX8dsr5pYw', 'lat': 39.37023608736976, 'lon': -91.4794699041634}, {'panoid': 'eOPsj4WZYJABlikxXgazUQ', 'lat': 39.37036659341757, 'lon': -91.47946968275292}]
@@ -18,54 +24,56 @@ The collectGSV function includes panoids = streetview.panoids(lat=x, lon=y).
 <p align="center">
   <img src="src/GSV_metadata.jpg" width="450">
   <br>
-  <b>The avaiable GSV metadata.</b>
+  <b>Avaiable GSV images.</b>
 </p>
 
 #### 1.2 Download GSV panoramic images 
-With the `panoid` of collected GSV metadata, the corresponding GSV panoramic images can be downloaded from Google Maps Platform through function `downloadGSV`. The orientation that the vehicle headed when collecting the GSV panoramic images is also retrived through `downloadGSV`. For example,  one GSV image is avaiable at location of (41.54170024691091,-88.29999867944885), and the vehicle was heading to 271° when collecting this GSV panoramic image. The north rotation is 271°.
+
+After collecting the GSV metadata with the [`collectGSV`](https://colab.research.google.com/drive/1WsbVxqH2A7FrLV7guVRx4HaEU6cwz2aJ#scrollTo=dxYrIqi1AmZG&line=1&uniqifier=1) function, the corresponding GSV panoramic images can be downloaded using the [`downloadGSV`](https://colab.research.google.com/drive/1WsbVxqH2A7FrLV7guVRx4HaEU6cwz2aJ#scrollTo=VcIevQDJAnWq&line=53&uniqifier=1) function, which takes the panoid as input.
+
 <p align="center">
   <img src="src/QDWxWb7c1sVcLeoquYPTHw_41.54170024691091_-88.29999867944885_2021_8_358.7471008300781_pano.jpg" width="450">
   <br>
-  <b>The avaiable GSV metadata.</b>
+  <b>Sample of one GSV panoramic image.</b>
 </p>
 
-#### 1.3 Extract GSV roadsides images
-The two roadsides street view images are retrived from the original GSV panoramic images using an function `NFOV`. This function supports the extraction of a normal field of view from a panoramic image, centered on any point you choose. The implementation is highly optimized for speed and efficiency, computing every pixel projection mapping at once. It uses bilinear interpolation to create smoother images, resulting in a more realistic and immersive viewing experience.
+#### 1.3 Extract roadside GSV Images
+The [`NFOV`](https://colab.research.google.com/drive/1WsbVxqH2A7FrLV7guVRx4HaEU6cwz2aJ#scrollTo=s0kxmiukAnZx&line=1&uniqifier=1) class is used to extract two roadside street view images from each original GSV panoramic image. This function enables the extraction of a normal field of view centered on any point of the panorama. The implementation of the [`NFOV`](https://colab.research.google.com/drive/1WsbVxqH2A7FrLV7guVRx4HaEU6cwz2aJ#scrollTo=s0kxmiukAnZx&line=1&uniqifier=1) class is optimized for speed and efficiency, and it computes every pixel projection mapping at once. The function also uses bilinear interpolation to create smoother images, resulting in a more realistic and immersive viewing experience.
 
 <p align="center">
   <img src="src/Panoramic clipping.gif" width="850" >
   <br>
-  <b>The avaiable GSV metadata.</b>
+  <b>Extract two roadside images from GSV panoramic image.</b>
 </p>
 
 ### 2. Training and test dataset preparation
-#### 2.1 Label GSV images
-More than millisions GSV images are collected once year, which includes various scenes, building, house, trees, etc. In order to collect the representative GSV images of crop species from massive GSV images, the collected GSV images are roughly labelled with the auxiliary Cropland data layer (CDL) and selcted with a sampling stratege. CDL is a raster, geospatial dataset created by the United States Department of Agriculture (USDA) that provides information about the type of crops grown on agricultural lands in the United States. The crop types identified in the CDL include grains, oilseeds, cotton, fruits, vegetables, and hay. With the specific location of each GSV point, the percentage of crop species that each GSV corresponds to is estimated based on CDL and images the orientation information.
+Millions of GSV images are collected annually, capturing a wide range of scenes including buildings, houses, trees, and more. To collect representative GSV images of crop species from this massive dataset, the collected images are roughly labeled with the aid of the `Cropland Data Layer (CDL)` and then selected using a proposed `sampling` strategy. 
 
-#### 2.2 Sample representative GSV images
-The sampling strategy is realized via function `sampling`. The input variables incldues GSV points shapefile that needs to be sampled  (e.g., high-quality cropland GSV points), the administrative boundaries shapefile (e.g., county boudnary), the number of target sampling GSV images. 
-The road note and primary road comes from open street data and are used to removed the low quality GSV images.
+#### 2.1 Label roadside GSV images
+The CDL is a geospatial dataset created by the United States Department of Agriculture (USDA) that provides information on the types of crops grown on agricultural lands in the United States, including grains, oilseeds, cotton, fruits, vegetables, and hay. By using the specific location of each GSV point, the percentage of crop species that corresponds to each GSV image is estimated based on the CDL data and the orientation information when the panoramic GSV images were taken. Only GSV images that correspond to a single crop species are assigned a label.
 
-The sampling strategy is a dynamic sampling method which changes according to the number of avaiable GSV images. For each administrative district, the FishNet is created and dynamically adjusted utill the final sampled GSV images meets the inital setting (the number of target sampling GSV images). This sampling strategy could also be used to randomly select application dataset to collect the ground truth crop type data in the furture.  
+#### 2.2 Sample representative roadside GSV images
+The GSV images with crop species labels are sampled using the function `sampling`, which selects representative images over the entire study area. This process ensures that the selected GSV images are evenly distributed across the study area. The input variables for the function include the GSV point shapefile that needs to be sampled (e.g., high-quality cropland GSV points), the administrative boundaries shapefile (e.g., county boundaries), and the target number of sampled GSV images. The road network, including notes and primary roads, is obtained from the OpenStreetMap database and used to remove low-quality GSV images.
 
-#### 2.3 Automatically zoom in GSV images
-With the clipping GSV images (2000*2000) as the training dataset, it requires extremmely intense computational resources to train the deep learning model. To keep the details on the GSV image (i.e., plant leaves) and make the training proecss feasible, a zoom-in strategy is designed to automatically clip the field's patch from the clipping GSV images. It leverages **Canny Edge Detection** to detect the sketch the edges of any plant present on the GSV images and to locate the boundary between field and sky. With the horiozonal boundary line, the images could be further clipped to extracte the critical patch which corresponding the field's view.  
+The sampling strategy employed is a dynamic sampling method that adapts to the number of available GSV images. For each administrative district, a FishNet is created and dynamically adjusted until the final number of sampled GSV images matches the target number. This sampling strategy can also be used to randomly select an application dataset for collecting ground truth crop type data in the future.
+
+#### 2.3 Automated roadside GSV image enhancement
+Training a deep learning model with GSV images that are 2000 x 2000 pixels requires significant computational resources. To make the training process feasible while retaining the necessary details of the images (such as plant leaves), a `zoom-in` strategy has been developed. This strategy involves automatically clipping patches of the field from the larger GSV images. To accomplish this, the Canny Edge Detection algorithm is used to identify the edges of any plants present in the GSV images and to locate the boundary between the field and the sky. Once the horizontal boundary line has been identified, the images are further clipped to extract the critical patch corresponding to the view of the field.
 
 <p align="center">
   <img src="src/Zoom-in.gif" width="850" >
   <br>
-  <b>The avaiable GSV metadata.</b>
+  <b>Automatically extract the target patch from roadside images.</b>
 </p>
 
-#### 2.4 Relabel GSV images by visual interpretation
+#### 2.4 Relabel roadside GSV images by visual interpretation
 
-There are some others plant or blocking items on the GSV images, which influence the distinguish of the view on the image. In addition, the label for each GSV image is generated from CDL, which may have some error due to the wrong clssifiation by CDL. To overcome these issues, each image are further labelled through visual interpretation. The images with other items or hardly distingusih cropland are labelled as others. 
-
+GSV images may contain other plant or blocking items that can interfere with distinguishing the crop view on the image. Furthermore, the CDL-generated labels for each GSV image may contain errors due to misclassifications. To address these issues, each image undergoes visual interpretation and is further labeled accordingly. Images containing other items or with crops that are difficult to distinguish are labeled as "others." The following shows the final processed dataset of dominant crop species for the southern region of the United States.
 
 <p align="center">
   <img src="src/TrainingDataset.jpg" width="850" >
   <br>
-  <b>ViTResFusionNet Architecture </b>
+  <b>Crop type ground-level view dataset. </b>
 </p>
 
 ### 3. GSV images classification 
@@ -75,13 +83,14 @@ There are some others plant or blocking items on the GSV images, which influence
 <p align="center">
   <img src="src/VitResnet.jpg" width="800" >
   <br>
-  <b>ViTResFusionNet Architecture </b>
+  <b>ViTResFusionNet Architecture. </b>
 </p>
 
-ViTResFusionNet is a fusion deep learning model, proposed to classify cropland street view image. It extract features in the GSV images with two SOTA image classification arcitectures Vision Transformer and Residue Nerual Network, and fuses them to do the classification. With the MC dropout incorporating into the classifcation layer, ViTResFusionNet are able to provide the uncertainty for each image classifcation besides the proability of each class. 
-Currently, CTIR framework is tested at four study areas across the U.S., including Illinois state, the South, Texas state, and California state. Location-specific deep learning models are built up to classify the dominant crop species at four study areas. With the South as an example, the dominant crop species are corn, soybean, rice and cotton. 
+ViTResFusionNet is a deep learning model designed for classifying crop species in street view images. It combines the features extracted from two state-of-the-art image classification architectures, Vision Transformer and Residual Neural Network, and fuses them for classification. The model also incorporates MC Dropout in the classification layer to provide uncertainty estimates for each image classification in addition to the probability of each class.  
+
 
 #### 3.2 Benchmarks 
+The performance comparison of two state-of-the-art image classification architectures, Vision Transformer and Residual Neural Network, is evaluated using the same training and testing datasets. 
 
 <div align="center">
 
@@ -124,15 +133,7 @@ Currently, CTIR framework is tested at four study areas across the U.S., includi
 
 ### 4. Application in reality
 
-
-
-
-
-
-#
-This repo contains code to automatically generate labels for agricultural parcels given Google Street View i
-mages and aerial imagery at a resolution of 1-meter (National Agriculture Imagery Program (NAIP)). This code has been used ot generate crop type labels for U.S.
-
+This part is currently under development. We are actively working on it.
 
 ## Author
 [RSSI UIUC](https://diaorssilab.web.illinois.edu/)
