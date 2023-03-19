@@ -33,7 +33,7 @@ With the `panoid` of collected GSV metadata, the corresponding GSV panoramic ima
 The two roadsides street view images are retrived from the original GSV panoramic images using an function `NFOV`. This function supports the extraction of a normal field of view from a panoramic image, centered on any point you choose. The implementation is highly optimized for speed and efficiency, computing every pixel projection mapping at once. It uses bilinear interpolation to create smoother images, resulting in a more realistic and immersive viewing experience.
 
 <p align="center">
-  <img src="src/Panoramic clipping.gif" width="1000"  loopcount="1">
+  <img src="src/Panoramic clipping.gif" width="1000" >
   <br>
   <b>The avaiable GSV metadata.</b>
 </p>
@@ -41,22 +41,34 @@ The two roadsides street view images are retrived from the original GSV panorami
 ### 3. GSV image classification
 
 #### 3.1 Training and test dataset preparation
-More than millisions GSV images are collected once year, which includes various scenes, building, house, trees, etc. In order to collect the representative GSV images of crop species from massive GSV images, the GSV images are roughly labelled with the auxiliary **Cropland data layer (CDL)** and selcted with **a sampling stratege**. CDL is a raster, geospatial dataset created by the United States Department of Agriculture (USDA) that provides information about the type of crops grown on agricultural lands in the United States. The CDL is produced annually and provides data for every state in the US. The CDL is based on satellite imagery and other remote sensing data and uses a supervised classification algorithm to identify the crop type on each pixel of the image. The crop types identified in the CDL include grains, oilseeds, cotton, fruits, vegetables, and hay. With the specific location 
+More than millisions GSV images are collected once year, which includes various scenes, building, house, trees, etc. In order to collect the representative GSV images of crop species from massive GSV images, the GSV images are roughly labelled with the auxiliary Cropland data layer (CDL) and selcted with a sampling stratege. CDL is a raster, geospatial dataset created by the United States Department of Agriculture (USDA) that provides information about the type of crops grown on agricultural lands in the United States. The crop types identified in the CDL include grains, oilseeds, cotton, fruits, vegetables, and hay. With the specific location of each GSV point, the percentage of crop species that each GSV corresponds to is estimated based on CDL and images the orientation information.
 
-. The view of GSV images is analysed Cropland data layer (CDL).
-the GSV images is selected based on the percentage of crop species that each GSV corresponds to. It is calculated using Cropland data layer (CDL). According to the orientation information and CDL, the 
+The sampling strategy is realized via function `sampling`. The input variables incldues GSV points shapefile that needs to be sampled  (e.g., high-quality cropland GSV points), the administrative boundaries shapefile (e.g., county boudnary), the number of target sampling GSV images. 
+The sampling strategy is a dynamic sampling method which changes according to the number of avaiable GSV images. For each administrative district, the FishNet is created and dynamically adjusted utill the final sampled GSV images meets the inital setting (the number of target sampling GSV images). This sampling strategy could also be used to randomly select application dataset to collect the ground truth crop type data in the furture.  
+
 
 
 #### 3.2 Model (ViTResFusionNet) training 
 [Google colab](https://colab.research.google.com/drive/1WsbVxqH2A7FrLV7guVRx4HaEU6cwz2aJ#scrollTo=2y4QtgcoA9De&line=1&uniqifier=1)
 
+<p align="center">
+  <img src="src/VitResnet.jpg" width="1000" >
+  <br>
+  <b>The avaiable GSV metadata.</b>
+</p>
 
+Demo:
 
-#### 3.3 Generate automatic labels for agricultural 
+### 4. Application
+
 
 #
 This repo contains code to automatically generate labels for agricultural parcels given Google Street View i
 mages and aerial imagery at a resolution of 1-meter (National Agriculture Imagery Program (NAIP)). This code has been used ot generate crop type labels for U.S.
+
+
+
+
 
 ## Acknowledgement
 This project is supported by the National Science Foundation’s Office of Advanced Cyberinfrastructure under grant 1849821
