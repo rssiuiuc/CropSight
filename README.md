@@ -48,6 +48,8 @@ The sampling strategy is realized via function `sampling`. The input variables i
 The sampling strategy is a dynamic sampling method which changes according to the number of avaiable GSV images. For each administrative district, the FishNet is created and dynamically adjusted utill the final sampled GSV images meets the inital setting (the number of target sampling GSV images). This sampling strategy could also be used to randomly select application dataset to collect the ground truth crop type data in the furture.  
 
 
+Visual interpretation!!!
+
 
 #### 3.2 Model (ViTResFusionNet) training 
 [Google colab](https://colab.research.google.com/drive/1WsbVxqH2A7FrLV7guVRx4HaEU6cwz2aJ#scrollTo=2y4QtgcoA9De&line=1&uniqifier=1)
