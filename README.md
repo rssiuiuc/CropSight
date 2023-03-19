@@ -82,6 +82,12 @@ Demo:
 
 ### 4. Application
 
+<p align="center">
+  <img src="src/TrainingDataset.jpg" width="1000" >
+  <br>
+  <b>ViTResFusionNet Architecture </b>
+</p>
+
 
 
 
