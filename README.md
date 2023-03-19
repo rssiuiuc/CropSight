@@ -78,7 +78,6 @@ GSV images may contain other plant or blocking items that can interfere with dis
 
 ### 3. GSV images classification 
 #### 3.1 Proposed deep learning model (ViTResFusionNet)
-[Google colab](https://colab.research.google.com/drive/1WsbVxqH2A7FrLV7guVRx4HaEU6cwz2aJ#scrollTo=2y4QtgcoA9De&line=1&uniqifier=1)
 
 <p align="center">
   <img src="src/VitResnet.jpg" width="800" >
@@ -86,7 +85,7 @@ GSV images may contain other plant or blocking items that can interfere with dis
   <b>ViTResFusionNet Architecture. </b>
 </p>
 
-ViTResFusionNet is a deep learning model designed for classifying crop species in street view images. It combines the features extracted from two state-of-the-art image classification architectures, Vision Transformer and Residual Neural Network, and fuses them for classification. The model also incorporates MC Dropout in the classification layer to provide uncertainty estimates for each image classification in addition to the probability of each class.  
+[`ViTResFusionNet`](https://colab.research.google.com/drive/1WsbVxqH2A7FrLV7guVRx4HaEU6cwz2aJ#scrollTo=jKrbgacr025T&line=18&uniqifier=1) is a deep learning model designed for classifying crop species in street view images. It combines the features extracted from two state-of-the-art image classification architectures, Vision Transformer and Residual Neural Network, and fuses them for classification. The model also incorporates MC Dropout in the classification layer to provide uncertainty estimates for each image classification in addition to the probability of each class.  
 
 
 #### 3.2 Benchmarks 
