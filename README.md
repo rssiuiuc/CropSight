@@ -1,13 +1,14 @@
 # Crop-type-information-retrieval-from-Google-Street-View-images
 ## About
 
-The Crop Type Information Retrieval (CTIR) Framework is an open-source toolkit that helps to automatically retrieve field-level crop type information from massive Google Street View (GSV) images. This scalable framework enables the efficient collection of GSV images from the Google Maps Platform and the automatic identification of GSV images to generate in-situ crop-type labels over large areas. The CTIR framework supports the complete workflow of automatically retrieving ground truth labels of croplands, including GSV metadata collection, GSV panoramic image downloading and processing, and GSV image classification. This open-source toolkit aims to enhance agriculture development by collecting accurate ground truth data of crop types from open-source data sources. This data can be used by researchers and practitioners across multiple disciplines to develop effective solutions for agriculture-related problems. By using this toolkit, users can improve the accuracy of crop classification, yield estimation, and other agricultural applications.
+The Crop Type Information Retrieval (CTIR) Framework is an open-source toolkit that automatically retrieves field-level crop type information from massive Google Street View (GSV) images. This scalable framework enables the efficient collection of GSV images from the Google Maps Platform and the automatic identification of GSV images to generate in-situ crop-type labels over large areas. The CTIR framework supports the complete workflow of automatically retrieving ground truth labels of croplands, including GSV metadata collection, GSV panoramic image downloading and processing, and GSV image classification. This open-source toolkit aims to enhance agricultural development by collecting accurate ground truth data of crop types from open-source data sources. This data can be used by researchers and practitioners across multiple disciplines to develop effective solutions for agriculture-related problems. By using this toolkit, users can improve the accuracy of crop classification, yield estimation, and other agricultural applications.
+
 
 ## Workflow of CTIR
 ### 1. GSV metadata collection 
 [Google colab](https://colab.research.google.com/drive/1WsbVxqH2A7FrLV7guVRx4HaEU6cwz2aJ#scrollTo=dxYrIqi1AmZG&line=1&uniqifier=1)
 
-Function `collectGSV` has `panoids = streetview.panoids(lat=x, lon=y)` it.
+The collectGSV function includes panoids = streetview.panoids(lat=x, lon=y).
 
 ```javascript
 [{'panoid': 'E9DDnTQsKTcgpH9NHI6MaA', 'lat': 39.36998876974609, 'lon': -91.47946938753894, 'year': 2009, 'month': 3}, {'panoid': '17hKTtanmJahKVoRW2K25w', 'lat': 39.36997271381018, 'lon': -91.47946938753894, 'year': 2021, 'month': 12}, {'panoid': '3Tm5g6lPAjClKQEdQIqc5g', 'lat': 39.36984071070807, 'lon': -91.47946909232498}, {'panoid': 'brlitF-PRFlM4mK_VYbHFg', 'lat': 39.3701044774849, 'lon': -91.47946983035992}, {'panoid': 'piNgln2_TUk-iKbqTzNkzA', 'lat': 39.36957715579746, 'lon': -91.47947027318088}, {'panoid': 'KWthHUJiJvfeCRwLSqQaAA', 'lat': 39.36970869798013, 'lon': -91.47946953514592}, {'panoid': 'ASq1hW2FU34tsX8dsr5pYw', 'lat': 39.37023608736976, 'lon': -91.4794699041634}, {'panoid': 'eOPsj4WZYJABlikxXgazUQ', 'lat': 39.37036659341757, 'lon': -91.47946968275292}]
@@ -57,9 +58,21 @@ The sampling strategy is a dynamic sampling method which changes according to th
   <b>ViTResFusionNet Architecture </b>
 </p>
 
+ViTResFusionNet is a fusion deep learning model, proposed to classify cropland street view image. It extract features in the GSV images with two SOTA image classification arcitectures Vision Transformer and Residue Nerual Network, and fuses them to do the classification. With the MC dropout incorporating into the classifcation layer, ViTResFusionNet are able to provide the uncertainty for each image classifcation besides the proability of each class. 
+Currently, CTIR framework is tested at four study areas across the U.S., including Illinois state, the South, Texas state, and California state. Location-specific deep learning models are built up to classify the dominant crop species at four study areas. With the South as an example, the dominant crop species are corn, soybean, rice and cotton. 
 Demo:
 
+
+| DL model | Precision | Recall | F-measure | Accuracy |
+|----------|----------|----------|----------|----------|
+| ViT | Row 1, Column 2 | Row 1, Column 2 | Row 1, Column 2 | Row 1, Column 2 |
+| ResNet50 | Row 1, Column 2 | Row 1, Column 2 | Row 1, Column 2 | Row 1, Column 2 |
+| ViTResFusionNet | Row 1, Column 2 | Row 1, Column 2 | Row 1, Column 2 | Row 1, Column 2 |
+
+
 ### 4. Application
+
+
 
 
 #
@@ -67,7 +80,8 @@ This repo contains code to automatically generate labels for agricultural parcel
 mages and aerial imagery at a resolution of 1-meter (National Agriculture Imagery Program (NAIP)). This code has been used ot generate crop type labels for U.S.
 
 
-
+## Author
+[RSSI UIUC](https://diaorssilab.web.illinois.edu/)
 
 
 ## Acknowledgement
