@@ -54,7 +54,7 @@ There are some others plant or blocking items on the GSV images, which influence
 Visual interpretation!!!
 
 <p align="center">
-  <img src="src/zoomin.gif" width="1000" >
+  <img src="src/Zoom-in.gif" width="1000" >
   <br>
   <b>The avaiable GSV metadata.</b>
 </p>
