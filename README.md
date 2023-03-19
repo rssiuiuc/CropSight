@@ -34,7 +34,7 @@ With the `panoid` of collected GSV metadata, the corresponding GSV panoramic ima
 The two roadsides street view images are retrived from the original GSV panoramic images using an function `NFOV`. This function supports the extraction of a normal field of view from a panoramic image, centered on any point you choose. The implementation is highly optimized for speed and efficiency, computing every pixel projection mapping at once. It uses bilinear interpolation to create smoother images, resulting in a more realistic and immersive viewing experience.
 
 <p align="center">
-  <img src="src/Panoramic clipping.gif" width="1000" >
+  <img src="src/Panoramic clipping.gif" width="850" >
   <br>
   <b>The avaiable GSV metadata.</b>
 </p>
@@ -49,21 +49,29 @@ The sampling strategy is a dynamic sampling method which changes according to th
 
 With the clipping GSV images (2000*2000) as the training dataset, it requires extremmely intense computational resources to train the deep learning model. To keep the details on the GSV image (i.e., plant leaves) and make the training proecss feasible, a zoom-in strategy is designed to automatically clip the field's patch from the clipping GSV images. It leverages **Canny Edge Detection** to detect the sketch the edges of any plant present on the GSV images and to locate the boundary between field and sky. With the horiozonal boundary line, the images could be further clipped to extracte the critical patch which corresponding the field's view.  
 
+<p align="center">
+  <img src="src/Zoom-in.gif" width="850" >
+  <br>
+  <b>The avaiable GSV metadata.</b>
+</p>
+
 There are some others plant or blocking items on the GSV images, which influence the distinguish of the view on the image. In addition, the label for each GSV image is generated from CDL, which may have some error due to the wrong clssifiation by CDL. To overcome these issues, each image are further labelled through visual interpretation. The images with other items or hardly distingusih cropland are labelled as others. 
 
 Visual interpretation!!!
 
+
 <p align="center">
-  <img src="src/Zoom-in.gif" width="1000" >
+  <img src="src/TrainingDataset.jpg" width="850" >
   <br>
-  <b>The avaiable GSV metadata.</b>
+  <b>ViTResFusionNet Architecture </b>
 </p>
+
 
 #### 3.2 Model (ViTResFusionNet) training 
 [Google colab](https://colab.research.google.com/drive/1WsbVxqH2A7FrLV7guVRx4HaEU6cwz2aJ#scrollTo=2y4QtgcoA9De&line=1&uniqifier=1)
 
 <p align="center">
-  <img src="src/VitResnet.jpg" width="1000" >
+  <img src="src/VitResnet.jpg" width="800" >
   <br>
   <b>ViTResFusionNet Architecture </b>
 </p>
@@ -73,20 +81,48 @@ Currently, CTIR framework is tested at four study areas across the U.S., includi
 Demo:
 
 
-| DL model | Precision | Recall | F-measure | Accuracy |
-|----------|----------|----------|----------|----------|
-| ViT | 0.9036 | 0.9021 | 0.8993 | 0.9021 |
-| ResNet50 | 0.9243 | 0.9212 | 0.9218 | 0.9212 |
-| **ViTResFusionNet** | **0.9595** | **0.9593** | **0.9592** | **0.9593** |
+<div align="center">
 
+<table>
+    <thead>
+        <tr>
+            <th align="center">DL model</th>
+            <th align="center">Precision</th>
+            <th align="center">Recall</th>
+            <th align="center">F-measure</th>
+            <th align="center">Accuracy</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td align="left">ViT</td>
+            <td align="center">0.9036</td>
+            <td align="center">0.9021</td>
+            <td align="center">0.8993</td>
+            <td align="center">0.9021</td>
+        </tr>
+        <tr>
+            <td align="left">ResNet50</td>
+            <td align="center">0.9243</td>
+            <td align="center">0.9212</td>
+            <td align="center">0.9218</td>
+            <td align="center">0.9212</td>
+        </tr>
+         <tr>
+            <th align="left">ViTResFusionNet</th>
+            <th align="center">0.9595</th>
+            <th align="center">0.9593</th>
+            <th align="center">0.9592</th>
+            <th align="center">0.9593</th>
+        </tr>
+    </tbody>
+</table>
+
+</div>
 
 ### 4. Application
 
-<p align="center">
-  <img src="src/TrainingDataset.jpg" width="1000" >
-  <br>
-  <b>ViTResFusionNet Architecture </b>
-</p>
+
 
 
 
