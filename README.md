@@ -65,9 +65,9 @@ Demo:
 
 | DL model | Precision | Recall | F-measure | Accuracy |
 |----------|----------|----------|----------|----------|
-| ViT | Row 1, Column 2 | Row 1, Column 2 | Row 1, Column 2 | Row 1, Column 2 |
-| ResNet50 | Row 1, Column 2 | Row 1, Column 2 | Row 1, Column 2 | Row 1, Column 2 |
-| ViTResFusionNet | Row 1, Column 2 | Row 1, Column 2 | Row 1, Column 2 | Row 1, Column 2 |
+| ViT | 0.9036 | 0.9021 | 0.8993 | 0.9021 |
+| ResNet50 | 0.9243 | 0.9212 | 0.9218 | 0.9212 |
+| **ViTResFusionNet** | **0.9595** | **0.9593** | **0.9592** | **0.9593** |
 
 
 ### 4. Application
