@@ -47,9 +47,17 @@ More than millisions GSV images are collected once year, which includes various 
 The sampling strategy is realized via function `sampling`. The input variables incldues GSV points shapefile that needs to be sampled  (e.g., high-quality cropland GSV points), the administrative boundaries shapefile (e.g., county boudnary), the number of target sampling GSV images. 
 The sampling strategy is a dynamic sampling method which changes according to the number of avaiable GSV images. For each administrative district, the FishNet is created and dynamically adjusted utill the final sampled GSV images meets the inital setting (the number of target sampling GSV images). This sampling strategy could also be used to randomly select application dataset to collect the ground truth crop type data in the furture.  
 
+With the clipping GSV images (2000*2000) as the training dataset, it requires extremmely intense computational resources to train the deep learning model. To keep the details on the GSV image (i.e., plant leaves) and make the training proecss feasible, a zoom-in strategy is designed to automatically clip the field's patch from the clipping GSV images. It leverages **Canny Edge Detection** to detect the sketch the edges of any plant present on the GSV images and to locate the boundary between field and sky. With the horiozonal boundary line, the images could be further clipped to extracte the critical patch which corresponding the field's view.  
+
+There are some others plant or blocking items on the GSV images, which influence the distinguish of the view on the image. In addition, the label for each GSV image is generated from CDL, which may have some error due to the wrong clssifiation by CDL. To overcome these issues, each image are further labelled through visual interpretation. The images with other items or hardly distingusih cropland are labelled as others. 
 
 Visual interpretation!!!
 
+<p align="center">
+  <img src="src/zoomin.gif" width="1000" >
+  <br>
+  <b>The avaiable GSV metadata.</b>
+</p>
 
 #### 3.2 Model (ViTResFusionNet) training 
 [Google colab](https://colab.research.google.com/drive/1WsbVxqH2A7FrLV7guVRx4HaEU6cwz2aJ#scrollTo=2y4QtgcoA9De&line=1&uniqifier=1)
