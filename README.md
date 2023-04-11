@@ -1,4 +1,4 @@
-# Crop-type-information-retrieval-from-Google-Street-View-images
+# CropSight: crop type information retrieval from Google Street View images
 
 ![Project Status](https://img.shields.io/badge/status-work%20in%20progress-yellow)
 
@@ -135,11 +135,17 @@ The performance comparison of two state-of-the-art image classification architec
 This part is currently under development. We are actively working on it.
 
 ## Author
-[RSSI UIUC](https://diaorssilab.web.illinois.edu/)
+Yin Liu (yinl3@illinois.edu)
+
+Chunyuan Diao (chunyuan@illinois.edu)
+
+[Remote Sensing Space-Time Innovation Lab](https://diaorssilab.web.illinois.edu/)
+
+Department of Geography & GIScience, University of Illinois at Urbana-Champaign
 
 
 ## Acknowledgement
-This project is supported by the National Science Foundation’s Office of Advanced Cyberinfrastructure under grant 1849821
+This project is supported by the National Science Foundation’s Office of Advanced Cyberinfrastructure under grant 2048068
 
 
 
