@@ -145,7 +145,7 @@ Department of Geography & GIScience, University of Illinois at Urbana-Champaign
 
 
 ## Acknowledgement
-This project is supported by the National Science Foundation’s Office of Advanced Cyberinfrastructure under grant 2048068
+This project is supported by the National Science Foundation’s Office of Advanced Cyberinfrastructure under grant 2048068.
 
 
 
