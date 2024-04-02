@@ -12,11 +12,13 @@ This repository contains code for automatically generating crop type labels for 
 
 
 ## Workflow of CropSight
+
 <p align="center">
   <img src="src/CropSight Flowchart.png" width="900">
   <br>
   <b>CropSight Flowchart</b>
 </p>
+
 ### 1. Operational cropland field-view imagery collection 
 #### 1.1 Collect GSV metadata 
 
