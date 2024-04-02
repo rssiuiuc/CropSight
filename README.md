@@ -1,18 +1,18 @@
-# CropSight: crop type information retrieval from Google Street View images
+# CropSight: towards a large-scale operational framework for object-based crop type ground truth retrieval using street view and PlanetScope satellite imagery
 
 ![Project Status](https://img.shields.io/badge/status-work%20in%20progress-yellow)
 
 ## About
 
-Collecting accurate ground truth data of crop types is a crucial challenge for agricultural research and development. The Crop Type Information Retrieval (CTIR) Framework is an open-source toolkit designed to automate the process of retrieving field-level crop type information from massive Google Street View (GSV) images. With its scalable and efficient features, the CTIR Framework enables the automatic identification of GSV images to generate in-situ crop-type labels over large areas.
+Collecting accurate ground truth data of crop types is a crucial challenge for agricultural research and development. The CropSight Framework is an open-source toolkit designed to automate the process of retrieving field-level crop type information from massive Google Street View (GSV) images. With its scalable and efficient features, the CropSight Framework enables the automatic identification of GSV images to generate in-situ crop-type labels over large areas.
 
-The CTIR Framework supports the complete workflow of automatically retrieving ground truth labels of croplands, including GSV metadata collection, GSV panoramic image downloading and processing, and GSV image classification. This open-source toolkit aims to enhance agricultural development by collecting accurate ground truth data of crop types from open-source data sources. By using the CTIR Framework, researchers and practitioners across multiple disciplines can develop effective solutions for agriculture-related problems, such as crop classification and yield estimation.
+The CropSight Framework supports the complete workflow of automatically retrieving ground truth labels of croplands, including GSV metadata collection, GSV panoramic image downloading and processing, and GSV image classification. This open-source toolkit aims to enhance agricultural development by collecting accurate ground truth data of crop types from open-source data sources. By using the CropSight Framework, researchers and practitioners across multiple disciplines can develop effective solutions for agriculture-related problems, such as crop classification and yield estimation.
 
-This repository contains code for automatically generating crop type labels for agricultural parcels using Google Street View images. The CTIR framework will be tested in four study areas across the United States: Illinois, the South, Texas, and California. Location-specific deep learning models are developed to classify the dominant crop species in each study area. For instance, in the southern region of the United States, the dominant crop species include corn, soybean, rice, and cotton. The framework has been successfully tested for generating crop type labels in the southern region of the United States.
+This repository contains code for automatically generating crop type labels for agricultural parcels using Google Street View images. The CropSight framework will be tested in four study areas across the United States: Illinois, the South, Texas, and California. Location-specific deep learning models are developed to classify the dominant crop species in each study area. For instance, in the southern region of the United States, the dominant crop species include corn, soybean, rice, and cotton. The framework has been successfully tested for generating crop type labels in the southern region of the United States.
 
 
-## Workflow of CTIR
-### 1. GSV roadside images collection
+## Workflow of CropSight
+### 1. Operational cropland field-view imagery collection 
 #### 1.1 Collect GSV metadata 
 
 The [`collectGSV`](https://colab.research.google.com/drive/1WsbVxqH2A7FrLV7guVRx4HaEU6cwz2aJ#scrollTo=dxYrIqi1AmZG&line=1&uniqifier=1) function retrieves Google Street View (GSV) metadata using the `panoids = streetview.panoids(lat=x, lon=y)` line of code. The panorama IDs will be retrieved at a given location (lat and lon) if GSV images are available around the location. This metadata describes the IDs, location, orientation, and time of available GSV panoramas. 
