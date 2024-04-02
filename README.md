@@ -13,7 +13,7 @@ This repository contains code for automatically generating crop type labels for 
 
 ## Workflow of CropSight
 <p align="center">
-  <img src="src/CropSight Flowchart.png" width="450">
+  <img src="src/CropSight Flowchart.png" width="900">
   <br>
   <b>CropSight Flowchart</b>
 </p>
