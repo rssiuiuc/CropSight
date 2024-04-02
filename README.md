@@ -19,7 +19,7 @@ This repository contains code for automatically generating crop type labels for 
   <b>CropSight Flowchart</b>
 </p>
 
-### 1. Operational cropland field-view imagery collection 
+### 1. Operational cropland field-view imagery collection method
 #### 1.1 Collect GSV metadata 
 
 The [`collectGSV`](https://colab.research.google.com/drive/1WsbVxqH2A7FrLV7guVRx4HaEU6cwz2aJ#scrollTo=dxYrIqi1AmZG&line=1&uniqifier=1) function retrieves Google Street View (GSV) metadata using the `panoids = streetview.panoids(lat=x, lon=y)` line of code. The panorama IDs will be retrieved at a given location (lat and lon) if GSV images are available around the location. This metadata describes the IDs, location, orientation, and time of available GSV panoramas. 
@@ -53,18 +53,7 @@ The [`NFOV`](https://colab.research.google.com/drive/1WsbVxqH2A7FrLV7guVRx4HaEU6
   <b>Extract two roadside images from GSV panoramic image.</b>
 </p>
 
-### 2. Training and test dataset preparation
-Millions of GSV images are collected annually, capturing a wide range of scenes including buildings, houses, trees, and more. To collect representative GSV images of crop species from this massive dataset, the collected images are roughly labeled with the aid of the `Cropland Data Layer (CDL)` and then selected using a proposed `sampling` strategy. 
-
-#### 2.1 Label roadside GSV images
-The CDL is a geospatial dataset created by the United States Department of Agriculture (USDA) that provides information on the types of crops grown on agricultural lands in the United States, including grains, oilseeds, cotton, fruits, vegetables, and hay. By using the specific location of each GSV point, the percentage of crop species that corresponds to each GSV image is estimated based on the CDL data and the orientation information when the panoramic GSV images were taken. Only GSV images that correspond to a single crop species are assigned a label.
-
-#### 2.2 Sample representative roadside GSV images
-The GSV images with crop species labels are sampled using the function `sampling`, which selects representative images over the entire study area. This process ensures that the selected GSV images are evenly distributed across the study area. The input variables for the function include the GSV point shapefile that needs to be sampled (e.g., high-quality cropland GSV points), the administrative boundaries shapefile (e.g., county boundaries), and the target number of sampled GSV images. The road network, including notes and primary roads, is obtained from the OpenStreetMap database and used to remove low-quality GSV images.
-
-The sampling strategy employed is a dynamic sampling method that adapts to the number of available GSV images. For each administrative district, a FishNet is created and dynamically adjusted until the final number of sampled GSV images matches the target number. This sampling strategy can also be used to randomly select an application dataset for collecting ground truth crop type data in the future.
-
-#### 2.3 Automated roadside GSV image enhancement
+#### 1.4 Automated roadside GSV image enhancement
 Training a deep learning model with GSV images that are 2000 x 2000 pixels requires significant computational resources. To make the training process feasible while retaining the necessary details of the images (such as plant leaves), a `zoom-in` strategy has been developed. This strategy involves automatically clipping patches of the field from the larger GSV images. To accomplish this, the Canny Edge Detection algorithm is used to identify the edges of any plants present in the GSV images and to locate the boundary between the field and the sky. Once the horizontal boundary line has been identified, the images are further clipped to extract the critical patch corresponding to the view of the field.
 
 <p align="center">
@@ -73,12 +62,23 @@ Training a deep learning model with GSV images that are 2000 x 2000 pixels requi
   <b>Automatically extract the target patch from roadside images.</b>
 </p>
 
-#### 2.4 Relabel roadside GSV images by visual interpretation
+#### 1.5. Training and test dataset preparation
+Millions of GSV images are collected annually, capturing a wide range of scenes including buildings, houses, trees, and more. To collect representative GSV images of crop species from this massive dataset, the collected images are roughly labeled with the aid of the `Cropland Data Layer (CDL)` and then selected using a proposed `sampling` strategy. 
+
+##### 1.5.1 Label roadside GSV images
+The CDL is a geospatial dataset created by the United States Department of Agriculture (USDA) that provides information on the types of crops grown on agricultural lands in the United States, including grains, oilseeds, cotton, fruits, vegetables, and hay. By using the specific location of each GSV point, the percentage of crop species that corresponds to each GSV image is estimated based on the CDL data and the orientation information when the panoramic GSV images were taken. Only GSV images that correspond to a single crop species are assigned a label.
+
+##### 1.5.2 Sample representative roadside GSV images
+The GSV images with crop species labels are sampled using the function `sampling`, which selects representative images over the entire study area. This process ensures that the selected GSV images are evenly distributed across the study area. The input variables for the function include the GSV point shapefile that needs to be sampled (e.g., high-quality cropland GSV points), the administrative boundaries shapefile (e.g., county boundaries), and the target number of sampled GSV images. The road network, including notes and primary roads, is obtained from the OpenStreetMap database and used to remove low-quality GSV images.
+
+The sampling strategy employed is a dynamic sampling method that adapts to the number of available GSV images. For each administrative district, a FishNet is created and dynamically adjusted until the final number of sampled GSV images matches the target number. This sampling strategy can also be used to randomly select an application dataset for collecting ground truth crop type data in the future.
+
+##### 1.5.3 Relabel roadside GSV images by visual interpretation
 
 GSV images may contain other plant or blocking items that can interfere with distinguishing the crop view on the image. Furthermore, the CDL-generated labels for each GSV image may contain errors due to misclassifications. To address these issues, each image undergoes visual interpretation and is further labeled accordingly. Images containing other items or with crops that are difficult to distinguish are labeled as "others." The following shows the final processed dataset of dominant crop species for the southern region of the United States.
 
 <p align="center">
-  <img src="src/TrainingDataset.jpg" width="850" >
+  <img src="src/CropGSV dataset.png" width="850" >
   <br>
   <b>Crop type ground-level view dataset. </b>
 </p>
