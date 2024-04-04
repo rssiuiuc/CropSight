@@ -154,9 +154,6 @@ With CropSight, we collected some crop type ground truth using Google Street Vie
 
 </div>
 
-### 4. Application in reality
-
-This part is currently under development. We are actively working on it.
 
 ## Author
 Yin Liu (yinl3@illinois.edu)
