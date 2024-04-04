@@ -75,20 +75,8 @@ Training a deep learning model with GSV images that are 2000 x 2000 pixels requi
 
 [`ViTResFusionNet`](https://colab.research.google.com/drive/1WsbVxqH2A7FrLV7guVRx4HaEU6cwz2aJ#scrollTo=jKrbgacr025T&line=18&uniqifier=1) is a deep learning model designed for classifying crop species in street view images. It combines the features extracted from two state-of-the-art image classification architectures, Vision Transformer and Residual Neural Network, and fuses them for classification. The model also incorporates MC Dropout in the classification layer to provide uncertainty estimates for each image classification in addition to the probability of each class.  
 
-#### 2.2. Training and test dataset preparation
-Millions of GSV images are collected annually, capturing a wide range of scenes including buildings, houses, trees, and more. To collect representative GSV images of crop species from this massive dataset, the collected images are roughly labeled with the aid of the `Cropland Data Layer (CDL)` and then selected using a proposed `sampling` strategy. 
-
-##### 2.2.1 Label roadside GSV images
-The CDL is a geospatial dataset created by the United States Department of Agriculture (USDA) that provides information on the types of crops grown on agricultural lands in the United States, including grains, oilseeds, cotton, fruits, vegetables, and hay. By using the specific location of each GSV point, the percentage of crop species that corresponds to each GSV image is estimated based on the CDL data and the orientation information when the panoramic GSV images were taken. Only GSV images that correspond to a single crop species are assigned a label.
-
-##### 2.2.2 Sample representative roadside GSV images
-The GSV images with crop species labels are sampled using the function `sampling`, which selects representative images over the entire study area. This process ensures that the selected GSV images are evenly distributed across the study area. The input variables for the function include the GSV point shapefile that needs to be sampled (e.g., high-quality cropland GSV points), the administrative boundaries shapefile (e.g., county boundaries), and the target number of sampled GSV images. The road network, including notes and primary roads, is obtained from the OpenStreetMap database and used to remove low-quality GSV images.
-
-The sampling strategy employed is a dynamic sampling method that adapts to the number of available GSV images. For each administrative district, a FishNet is created and dynamically adjusted until the final number of sampled GSV images matches the target number. This sampling strategy can also be used to randomly select an application dataset for collecting ground truth crop type data in the future.
-
-##### 2.2.3 Relabel roadside GSV images by visual interpretation
-
-GSV images may contain other plant or blocking items that can interfere with distinguishing the crop view on the image. Furthermore, the CDL-generated labels for each GSV image may contain errors due to misclassifications. To address these issues, each image undergoes visual interpretation and is further labeled accordingly. Images containing other items or with crops that are difficult to distinguish are labeled as "others." The following shows the final processed dataset of dominant crop species for the southern region of the United States.
+#### 2.2. Training and testing dataset 
+Millions of GSV images are collected annually, capturing a wide range of scenes including buildings, houses, trees, and more. To collect representative GSV images of crop species from this massive dataset, the collected images are roughly labeled with the aid of the `Cropland Data Layer (CDL)` and then selected using a proposed `sampling` strategy. The CDL-generated labels for each GSV image may contain errors due to misclassifications. To address these issues, each image undergoes visual interpretation and is further labeled accordingly. Images containing other items or with crops that are difficult to distinguish are labeled as "others." The following shows the final processed dataset of dominant crop species for the southern region of the United States.
 
 <p align="center">
   <img src="src/CropGSV dataset.png" width="850" >
@@ -98,20 +86,26 @@ GSV images may contain other plant or blocking items that can interfere with dis
 
 ### 3. CropGSV-based cropland boundary delineation model 
 #### 3.1 Segmentation Anything Model (SAM)
-With the crop type labels retrieved from the geotagged cropland field-view images, SAM is employed and fine-tuned to delineate the cropland boundaries associated with these crop type images. SAM is a highly effective state-of-the-art model designed to segment an object of interest in an image given certain prompts provided by a user (Kirillov et al., 2023). SAM diverges from traditional segmentation models by introducing a pioneering promptable segmentation strategy. Utilizing satellite imagery as the primary input and coordinates derived from geotagged field-view images as point prompts, SAM model emerges as an optimally tailored solution for extracting the cropland boundary corresponding to each field-view image in CropSight. Specifically, it comprises three main components: an image encoder, a flexible prompt encoder, and a fast mask decoder: (1) The image encoder is grounded on the architecture of a typical ViT. It is utilized to extract visual features from satellite images and convert them into image embeddings; (2) The prompt encoder is distinctively designed to embed user interactions (i.e., prompts) into an embedding vector effectively. It supports four types of prompts (i.e., points, boxes, texts, and masks), allowing for flexibility and adaptability to various user intervention. In our study, we utilize points inferred from the geotagged CropGSV images as the prompt; (3) The mask decoder is a modified Transformer decoder block, which can generate segmentation results along with confidence scores (i.e., estimated Interaction over Union (IoU)) based on the image embedding and prompt embedding. It uses two-way cross-attention, one for prompt-to-image embedding and the other for image-to-prompt embedding to learn the interaction between the prompt and image embedding for the mask (i.e., cropland boundary) generating. 
+With the crop type labels retrieved from the geotagged cropland field-view images, SAM is employed and fine-tuned to delineate the cropland boundaries associated with these crop type images. SAM is a highly effective state-of-the-art model designed to segment an object of interest in an image given certain prompts provided by a user (Kirillov et al., 2023). SAM diverges from traditional segmentation models by introducing a pioneering promptable segmentation strategy. Utilizing satellite imagery as the primary input and coordinates derived from geotagged field-view images as point prompts, SAM model emerges as an optimally tailored solution for extracting the cropland boundary corresponding to each field-view image in CropSight.
 
 
 <p align="center">
   <img src="src/SAM.png" width="850" >
   <br>
-  <b>Crop type ground-level view dataset. </b>
+  <b>Structure of SAM model. </b>
 </p>
 
 #### 3.2 Fine-tuning
+We fine-tune the mask decoder of the SAM model while freezing the image encoder and prompt encoder using the manually collected CropBoundary dataset. 
 
+<p align="center">
+  <img src="src/CropBoundary.png" width="850" >
+  <br>
+  <b>Cropland boundary ground-truth dataset (CropBoundary). </b>
+</p>
 
-#### 3.2 Benchmarks 
-The performance comparison of two state-of-the-art image classification architectures, Vision Transformer and Residual Neural Network, is evaluated using the same training and testing datasets. 
+#### 4 Results 
+With CropSight, we collected some crop type ground truth using Google Street View and PlanetScope satellite imagery. The following examples shows roadside field-view images (GSV), PlanetScope imagery (PS), crop type ground truth (GT), and crop type labels from CropSight and CDL, of all studied crop species.
 
 <p align="center">
   <img src="src/CropSight Examples.png" width="850" >
