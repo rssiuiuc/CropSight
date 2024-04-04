@@ -81,7 +81,7 @@ Millions of GSV images are collected annually, capturing a wide range of scenes 
 <p align="center">
   <img src="src/CropGSV dataset.png" width="850" >
   <br>
-  <b>Crop type ground-level view dataset. </b>
+  <b>Crop type ground-level view dataset (CropGSV). </b>
 </p>
 
 ### 3. CropGSV-based cropland boundary delineation model 
@@ -110,7 +110,7 @@ With CropSight, we collected some crop type ground truth using Google Street Vie
 <p align="center">
   <img src="src/CropSight Examples.png" width="850" >
   <br>
-  <b>Crop type ground-level view dataset. </b>
+  <b>Examples showcasing roadside field-view images (GSV), PlanetScope imagery (PS), crop type ground truth (GT), and crop type labels from CropSight and CDL, of all studied crop species.. </b>
 </p>
 
 
