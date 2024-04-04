@@ -107,6 +107,9 @@ With the crop type labels retrieved from the geotagged cropland field-view image
   <b>Crop type ground-level view dataset. </b>
 </p>
 
+#### 3.2 Fine-tuning
+
+
 #### 3.2 Benchmarks 
 The performance comparison of two state-of-the-art image classification architectures, Vision Transformer and Residual Neural Network, is evaluated using the same training and testing datasets. 
 
