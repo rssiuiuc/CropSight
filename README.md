@@ -115,44 +115,6 @@ With CropSight, we collected some crop type ground truth using Google Street Vie
 
 
 
-<div align="center">
-
-<table>
-    <thead>
-        <tr>
-            <th align="center">DL model</th>
-            <th align="center">Precision</th>
-            <th align="center">Recall</th>
-            <th align="center">F-measure</th>
-            <th align="center">Accuracy</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td align="left">ViT</td>
-            <td align="center">0.9036</td>
-            <td align="center">0.9021</td>
-            <td align="center">0.8993</td>
-            <td align="center">0.9021</td>
-        </tr>
-        <tr>
-            <td align="left">ResNet50</td>
-            <td align="center">0.9243</td>
-            <td align="center">0.9212</td>
-            <td align="center">0.9218</td>
-            <td align="center">0.9212</td>
-        </tr>
-         <tr>
-            <th align="left">ViTResFusionNet</th>
-            <th align="center">0.9595</th>
-            <th align="center">0.9593</th>
-            <th align="center">0.9592</th>
-            <th align="center">0.9593</th>
-        </tr>
-    </tbody>
-</table>
-
-</div>
 
 
 ## Author
