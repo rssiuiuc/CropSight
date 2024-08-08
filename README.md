@@ -4,7 +4,6 @@
 
 ## Introduction
 
-
 Collecting accurate ground truth data of crop types is a crucial challenge for agricultural research and development. The CropSight Framework is an open-source toolkit designed to automate the retrieval of object-based crop type information from massive Google Street View (GSV) images. With its scalable and efficient features, CropSight enables the automatic identification of GSV images and boundary delineation to generate in-situ object-based crop-type labels over large areas.
 
 ### Key Components
@@ -23,14 +22,14 @@ Collecting accurate ground truth data of crop types is a crucial challenge for a
 ## Dataset 
 ### UncertainFusionNet  
 <p align="center">
-<img src="src/CropGSV dataset.png" width="850" >
+<img src="src/CropGSV dataset.png" width="450" >
 <br>
 <b>Crop type ground-level view dataset (CropGSV) used to train UncertainFusionNet. </b>
 </p>
 
-
+### SAM
 <p align="center">
-<img src="src/CropBoundary.png" width="850" >
+<img src="src/CropBoundary.png" width="450" >
 <br>
 <b>Cropland boundary ground-truth dataset (CropBoundary) used to fine-tune SAM. </b>
 </p>
@@ -38,16 +37,38 @@ Collecting accurate ground truth data of crop types is a crucial challenge for a
 ### Application 
 With CropSight, we collected some crop type ground truth using Google Street View and PlanetScope satellite imagery. The following examples shows Application of CropSight in US and Brazil.
 <p align="center">
-  <img src="src/Brazil_Map_S4.png" width="850" >
+  <img src="src/Brazil_Map_S4.png" width="550" >
   <br>
   <b>Map of object-based crop type ground truth produced by CropSight using latest images (2023) in Brazil. Crop type labels are overlaid on Google Earth imagery. The accuracy of crop type classification and boundary delineation is assessed by randomly sampling and comparing against visually interpreted GSV-based ground truth data. </b>
 </p>
 
 <p align="center">
-  <img src="src/Fig18.png" width="850" >
+  <img src="src/Fig18.png" width="550" >
   <br>
   <b>Maps of object-based crop type ground truth produced by CropSight using latest images (2023). These maps represent four distinct study areas, each situated in one of our four study areas A-D. (a) displays the overlay of crop type labels on Google Maps. (b) displays the overlay of crop type labels on off-season PlanetScope images. </b>
 </p>
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="src/Brazil_Map_S4.png" width="550" >
+      <br>
+      <b>Map of object-based crop type ground truth produced by CropSight using latest images (2023) in Brazil. Crop type labels are overlaid on Google Earth imagery. The accuracy of crop type classification and boundary delineation is assessed by randomly sampling and comparing against visually interpreted GSV-based ground truth data.</b>
+    </td>
+    <td align="center">
+      <img src="src/Fig18.png" width="550" >
+      <br>
+      <b>Maps of object-based crop type ground truth produced by CropSight using latest images (2023). These maps represent four distinct study areas, each situated in one of our four study areas A-D. (a) displays the overlay of crop type labels on Google Maps. (b) displays the overlay of crop type labels on off-season PlanetScope images.</b>
+    </td>
+  </tr>
+</table>
+
+## Example of Retrieving One Ground Truth
+
+To see an example of how to retrieve one ground truth using the CropSight framework, refer to the [example notebook](./Example/1).
+
+[![Open in GitHub](https://img.shields.io/badge/Open%20Notebook-Example-brightgreen)](./Example/1)
+
 
 
 ## Author
