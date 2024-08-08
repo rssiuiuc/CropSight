@@ -132,15 +132,12 @@ This project is supported by the National Science Foundation’s Office of Advan
 
 ## Citation
 If you use this work in any way, please mention this citation:
-@article{Authors: Liu, Yin and Diao, Chunyuan and Mei, Weiye and Zhang, Chishan;
-Article Title: Using a semantic edge-aware multi-task neural network to delineate agricultural parcels from remote sensing images,
-Publication: ISPRS Journal of Photogrammetry and Remote Sensing,
-Year: 2024,
-Volume:216
-Page: 66-89,
-DOI: 10.1016/j.isprsjprs.2024.07.025
-}
-
-
-
-
+```markdown
+@article
+{Title: Using a semantic edge-aware multi-task neural network to delineate agricultural parcels from remote sensing images,
+ Authors: Liu, Yin and Diao, Chunyuan and Mei, Weiye and Zhang, Chishan,
+ Publication: ISPRS Journal of Photogrammetry and Remote Sensing,
+ Year: 2024,
+ Volume:216
+ Page: 66-89,
+ DOI: 10.1016/j.isprsjprs.2024.07.025}
