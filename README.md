@@ -1,6 +1,6 @@
 # CropSight: towards a large-scale operational framework for object-based crop type ground truth retrieval using street view and PlanetScope satellite imagery
 
-![Project Status](https://img.shields.io/badge/status-completed-brightgreen)
+![CropSight]([https://img.shields.io/badge/status-completed-brightgreen](https://www.sciencedirect.com/science/article/pii/S0924271624002922))
 
 ## Introduction
 
@@ -57,7 +57,7 @@ Using the CropSight framework, we collected crop type ground truth data from Goo
 
 ## Example of Retrieving One Ground Truth
 
-To see an example of how to retrieve one ground truth using the CropSight framework, refer to the [example notebook](https://colab.research.google.com/drive/1yoTC0MrmTVOrDZNF7A7rNcK-XbthJ1Ub?usp=drive_link).
+To see an example of how to retrieve one ground truth using the CropSight framework, refer to the [CropSight.ipython](https://colab.research.google.com/drive/1yoTC0MrmTVOrDZNF7A7rNcK-XbthJ1Ub?usp=drive_link).
 
 
 ## Author
