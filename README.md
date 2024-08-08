@@ -2,16 +2,17 @@
 
 ![Project Status](https://img.shields.io/badge/status-work%20in%20progress-yellow)
 
-## About
-
-Collecting accurate ground truth data of crop types is a crucial challenge for agricultural research and development. The CropSight Framework is an open-source toolkit designed to automate the process of retrieving object-based crop type information from massive Google Street View (GSV) images. With its scalable and efficient features, the CropSight Framework enables the automatic identification of GSV images and automatic boundary delineation to generate in-situ object-based crop-type labels over large areas.
-
-CropSight comprises three key components: large-scale operational cropland field-view imagery collection method, uncertainty-aware crop type image classification model (UncertainFusionNet), and cropland boundary delineation model (SAM). This open-source toolkit aims to enhance agricultural development by collecting accurate ground truth data of crop types from open-source data sources. By using the CropSight Framework, researchers and practitioners across multiple disciplines can develop effective solutions for agriculture-related problems, such as crop classification and yield estimation.
-
-This repository contains code for automatically generating crop type labels and boundaries for agricultural parcels using Google Street View and satellite images. The CropSight framework is tested in four study areas across the United States: Illinois, the South, Texas, and California. Location-specific deep learning models are developed to classify the dominant crop species in each study area. For instance, in the southern region of the United States, the dominant crop species include corn, soybean, rice, and cotton. The framework has been successfully tested for generating object-based crop type ground truth in the four regions of the United States.
+## Introduction
 
 
-## Workflow of CropSight
+Collecting accurate ground truth data of crop types is a crucial challenge for agricultural research and development. The CropSight Framework is an open-source toolkit designed to automate the retrieval of object-based crop type information from massive Google Street View (GSV) images. With its scalable and efficient features, CropSight enables the automatic identification of GSV images and boundary delineation to generate in-situ object-based crop-type labels over large areas.
+
+### Key Components
+- **Large-Scale Operational Cropland Field-View Imagery Collection Method**: Systematically acquires representative geotagged cropland field-view images.
+- **Uncertainty-Aware Crop Type Image Classification Model (UncertainFusionNet)**: Retrieves high-quality crop type labels with quantified uncertainty.
+- **Cropland Boundary Delineation Model (SAM)**: Delineates cropland boundaries using PlanetScope satellite imagery.
+
+### Workflow of CropSight
 
 <p align="center">
   <img src="src/CropSight Flowchart.png" width="900">
