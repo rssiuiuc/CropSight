@@ -35,6 +35,7 @@ Collecting accurate ground truth data of crop types is a crucial challenge for a
 </p>
 
 ### Application 
+
 With CropSight, we collected some crop type ground truth using Google Street View and PlanetScope satellite imagery. The following examples shows Application of CropSight in US and Brazil.
 <p align="center">
   <img src="src/Brazil_Map_S4.png" width="550" >
@@ -48,20 +49,7 @@ With CropSight, we collected some crop type ground truth using Google Street Vie
   <b>Maps of object-based crop type ground truth produced by CropSight using latest images (2023). These maps represent four distinct study areas, each situated in one of our four study areas A-D. (a) displays the overlay of crop type labels on Google Maps. (b) displays the overlay of crop type labels on off-season PlanetScope images. </b>
 </p>
 
-<table>
-  <tr>
-    <td align="center">
-      <img src="src/Brazil_Map_S4.png" width="550" >
-      <br>
-      <b>Map of object-based crop type ground truth produced by CropSight using latest images (2023) in Brazil. Crop type labels are overlaid on Google Earth imagery. The accuracy of crop type classification and boundary delineation is assessed by randomly sampling and comparing against visually interpreted GSV-based ground truth data.</b>
-    </td>
-    <td align="center">
-      <img src="src/Fig18.png" width="550" >
-      <br>
-      <b>Maps of object-based crop type ground truth produced by CropSight using latest images (2023). These maps represent four distinct study areas, each situated in one of our four study areas A-D. (a) displays the overlay of crop type labels on Google Maps. (b) displays the overlay of crop type labels on off-season PlanetScope images.</b>
-    </td>
-  </tr>
-</table>
+
 
 ## Example of Retrieving One Ground Truth
 
