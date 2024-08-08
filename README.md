@@ -57,7 +57,7 @@ Using the CropSight framework, we collected crop type ground truth data from Goo
 
 ## Example of Retrieving One Ground Truth
 
-To see an example of how to retrieve one ground truth using the CropSight framework, refer to the [example notebook](./Example/1).
+To see an example of how to retrieve one ground truth using the CropSight framework, refer to the [example notebook](./Example/CropSight_example.ipynb).
 
 
 ## Author
