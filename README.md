@@ -1,6 +1,4 @@
-# CropSight: towards a large-scale operational framework for object-based crop type ground truth retrieval using street view and PlanetScope satellite imagery
-
-![CropSight]([https://img.shields.io/badge/status-completed-brightgreen](https://www.sciencedirect.com/science/article/pii/S0924271624002922))
+# [CropSight: towards a large-scale operational framework for object-based crop type ground truth retrieval using street view and PlanetScope satellite imagery](https://www.sciencedirect.com/science/article/pii/S0924271624002922)
 
 ## Introduction
 
