@@ -132,17 +132,15 @@ This project is supported by the National Science Foundation’s Office of Advan
 
 ## Citation
 If you use this work in any way, please mention this citation:
-@article{liu2024cropsight,
-title={CropSight: Towards a large-scale operational framework for object-based crop type ground truth retrieval using street view and PlanetScope satellite imagery},
-author={Liu, Yin and Diao, Chunyuan and Mei, Weiye and Zhang, Chishan},
-journal={ISPRS Journal of Photogrammetry and Remote Sensing},
-volume={216},
-pages={66-89},
-year={2024},
-publisher={Elsevier},
-doi={https://doi.org/10.1016/j.isprsjprs.2024.07.025},
-url={https://www.sciencedirect.com/science/article/pii/S0924271624002922}
+@article{Authors: Liu, Yin and Diao, Chunyuan and Mei, Weiye and Zhang, Chishan;
+Article Title: Using a semantic edge-aware multi-task neural network to delineate agricultural parcels from remote sensing images,
+Publication: ISPRS Journal of Photogrammetry and Remote Sensing,
+Year: 2024,
+Volume:216
+Page: 66-89,
+DOI: 10.1016/j.isprsjprs.2024.07.025
 }
+
 
 
 
