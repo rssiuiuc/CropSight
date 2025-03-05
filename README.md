@@ -75,7 +75,7 @@ This project is supported by the National Science Foundation’s Office of Advan
 If you use this work in any way, please mention this citation:
 ```markdown
 @article
-{Title: Using a semantic edge-aware multi-task neural network to delineate agricultural parcels from remote sensing images,
+{Title: CropSight: towards a large-scale operational framework for object-based crop type ground truth retrieval using street view and PlanetScope satellite imagery,
  Authors: Liu, Yin and Diao, Chunyuan and Mei, Weiye and Zhang, Chishan,
  Publication: ISPRS Journal of Photogrammetry and Remote Sensing,
  Year: 2024,
