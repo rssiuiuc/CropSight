@@ -57,6 +57,7 @@ Using the CropSight framework, we collected crop type ground truth data from Goo
 
 To see an example of how to retrieve one ground truth using the CropSight framework, refer to the [CropSight.ipynb](https://colab.research.google.com/drive/1yoTC0MrmTVOrDZNF7A7rNcK-XbthJ1Ub?usp=drive_link).
 
+## [In Preparation] CropSight-US: An Object-Based Crop Type Ground Truth Dataset Using Street View and Sentinel-2 Satellite Imagery across the Contiguous United States
 
 ## Author
 Yin Liu (yinl3@illinois.edu)
