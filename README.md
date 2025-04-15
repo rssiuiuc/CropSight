@@ -61,11 +61,22 @@ To see an example of how to retrieve one ground truth using the CropSight framew
 
 CropSight-US is an annual, object-based crop type ground truth dataset covering the contiguous United States (CONUS) from 2013 to 2023. Based on the CropSight workflow (Liu et al., 2024), it expands sample generation from specific sites to nationwide coverage, labeling 17 distinct crop types. The dataset integrates Google Street View imagery for crop type identification and Sentinel-2 imagery for field boundary delineation, addressing the challenge of large-scale ground truth data collection. To our knowledge, CropSight-US is the first nationwide, object-based crop type dataset derived from street view imagery, offering broad spatial and crop-type coverage.
 
+CropSight-US is in its final stages of preparation and will be released soon as an open-source dataset.
+
 <p align="center">
   <img src="src/CropSight-US-Flowchart.png" width="800">
   <br>
   <b>Figure 6: CropSight-US ground-truthing framework demonstrating the steps necessary to generate the CropSight-US products across CONUS for object-based crop type ground truth building on the CropSight by Liu et al. (2024).</b>
 </p>
+
+With the evaluated object-based crop type ground-truthing framework, we constructed an object-based field-level crop type ground truth dataset comprising 17 major crop type classes sampled from the GSV metadata pool we created. Each entry in the ground truth dataset includes the predicted crop type along with high or low confidence information from the CONUS-UncertainFusionNet model, the corresponding cropland boundary, and the year and month when the GSV image was captured. For each crop type, we first computed the average number of fields per ASD using the CSB dataset and assigned quantiles to each ASD based on field count. We then aggregated the available GSV metadata for each crop type within each ASD and calculated the average number of GSV metadata entries per ASD. Crop types contributing less than 2% of the total GSV metadata database were excluded from sampling. For each crop type, if an ASD contained fewer than or equal to the average number of GSV metadata entries, all available entries were used. For ASDs with above-average GSV metadata, additional samples were drawn based on their quantile ranking (Q1–Q4, with Q4 being the class with the highest number of GSV available). Specifically, the number of extra samples beyond the average was determined as 0.2, 0.4, 0.6, and 0.8 times the excess metadata count for ASDs in Q1, Q2, Q3, and Q4, respectively.
+
+<p align="center">
+  <img src="src/CropSight-US-Crop-Type.jpg" width="800">
+  <br>
+  <b>Figure 7: Samples of the reference dataset showcasing field-view images of 17 crop types included in CropSight-US.</b>
+</p>
+
 
 ## Author
 Yin Liu (yinl3@illinois.edu)
