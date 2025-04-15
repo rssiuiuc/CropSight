@@ -72,7 +72,7 @@ CropSight-US is in its final stages of preparation and will be released soon as 
 With the evaluated object-based crop type ground-truthing framework, we constructed an object-based field-level crop type ground truth dataset comprising 17 major crop type classes sampled from the GSV metadata pool we created. Each entry in the ground truth dataset includes the predicted crop type along with high or low confidence information from the CONUS-UncertainFusionNet model, the corresponding cropland boundary, and the year and month when the GSV image was captured. For each crop type, we first computed the average number of fields per ASD using the CSB dataset and assigned quantiles to each ASD based on field count. We then aggregated the available GSV metadata for each crop type within each ASD and calculated the average number of GSV metadata entries per ASD. Crop types contributing less than 2% of the total GSV metadata database were excluded from sampling. For each crop type, if an ASD contained fewer than or equal to the average number of GSV metadata entries, all available entries were used. For ASDs with above-average GSV metadata, additional samples were drawn based on their quantile ranking (Q1–Q4, with Q4 being the class with the highest number of GSV available). Specifically, the number of extra samples beyond the average was determined as 0.2, 0.4, 0.6, and 0.8 times the excess metadata count for ASDs in Q1, Q2, Q3, and Q4, respectively.
 
 <p align="center">
-  <img src="src/CropSight-US-Crop-Type.jpg" width="800">
+  <img src="src/CropSight-US-Crop-Types.jpg" width="800">
   <br>
   <b>Figure 7: Samples of the reference dataset showcasing field-view images of 17 crop types included in CropSight-US.</b>
 </p>
