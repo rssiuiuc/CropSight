@@ -62,7 +62,7 @@ To see an example of how to retrieve one ground truth using the CropSight framew
 CropSight-US is an annual, object-based crop type ground truth dataset covering the contiguous United States (CONUS) from 2013 to 2023. Based on the CropSight workflow (Liu et al., 2024), it expands sample generation from specific sites to nationwide coverage, labeling 17 distinct crop types. The dataset integrates Google Street View imagery for crop type identification and Sentinel-2 imagery for field boundary delineation, addressing the challenge of large-scale ground truth data collection. To our knowledge, CropSight-US is the first nationwide, object-based crop type dataset derived from street view imagery, offering broad spatial and crop-type coverage.
 
 <p align="center">
-  <img src="src/CropSight-US-Flowchart" width="800">
+  <img src="src/CropSight-US-Flowchart.png" width="800">
   <br>
   <b>Figure 6: CropSight-US ground-truthing framework demonstrating the steps necessary to generate the CropSight-US products across CONUS for object-based crop type ground truth building on the CropSight by Liu et al. (2024).</b>
 </p>
