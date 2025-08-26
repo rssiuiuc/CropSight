@@ -69,7 +69,32 @@ CropSight-US is in its final stages of preparation and will be released soon as 
   <b>Figure 6: CropSight-US ground-truthing framework demonstrating the steps necessary to generate the CropSight-US products across CONUS for object-based crop type ground truth building on the CropSight by Liu et al. (2024).</b>
 </p>
 
-We constructed a field-level crop type ground truth dataset using an object-based framework with 17 major crop types sampled from the GSV metadata pool. Each record includes predicted crop type, confidence level (from CONUS-UncertainFusionNet), cropland boundary, and image timestamp (year, month). For each crop, we used CSB data to compute the average number of fields per ASD and assigned ASDs to quantiles (Q1–Q4). GSV metadata were aggregated per crop-ASD pair, excluding crops with <2% total metadata. If an ASD had ≤ average GSV entries, all were used. For ASDs above average, extra samples were drawn at 0.2x, 0.4x, 0.6x, and 0.8x the excess count for Q1–Q4, respectively. Sampling was stratified by ASD-level irrigation:rainfed ratios, with targets decomposed accordingly. Within each ASD, a spatially adaptive fishnet approach ensured spatially representative sampling per crop. More information about sampling is documented at [CropSight-ASD-GSV-Sampling.ipynb](https://colab.research.google.com/drive/1lBX9MaaueqojQ3JpbS0WaNvNqeS7R_UI?usp=sharing)
+To generate the CropSight-US dataset, we apply our crop type ground truthing framework across the entire CONUS using an automated pipeline. This pipeline processes all available cropland field-view GSV metadata from 2013 to 2023 to ensure broad spatial coverage and capture agricultural diversity.
+
+Since GSV panoramas are captured approximately every 10 meters, multiple metadata records may correspond to the same field. To reduce redundancy, we spatially link each GSV metadata record to cropland field boundaries from the CSB dataset and randomly select one representative per field to ensure spatial uniqueness.
+
+To guide crop-type sampling, we quantify the spatial distribution of each crop by counting retained GSV metadata linked to CSB-labeled fields. We compute the average metadata count per ASD per crop type to establish a baseline for balanced representation, accounting for crop extent, GSV availability, and irrigation practices.
+
+For each crop-year combination:
+
+- In ASDs with fewer samples than the baseline, all metadata are retained.
+- In ASDs exceeding the baseline, we retain the baseline plus a proportionally sampled subset based on CSB-linked metadata volume.
+- To preserve irrigation representation, we stratify samples by irrigation status within each ASD, maintaining the relative proportions of irrigated and non-irrigated fields.
+
+Using these ASD-level targets, we apply a spatially adapted sampling strategy (Sect. 3.1.2) to select cropland field-view GSV records. Each selected record is paired with:
+
+- The corresponding GSV image
+- The least cloudy Sentinel-2 image from the same month (or NAIP as fallback)
+- Crop type labels are predicted using CONUS-UncertainFusionNet, which also provides uncertainty metrics. Field boundaries are delineated using our fine-tuned SAM model.
+
+Each entry in the CropSight-US dataset includes:
+
+- Predicted crop type
+- Confidence metrics (entropy, variance, confidence level)
+- Delineated field boundary
+- Year and month of GSV capture
+
+More information about sampling is documented at [CropSight-ASD-GSV-Sampling.ipynb](https://colab.research.google.com/drive/1lBX9MaaueqojQ3JpbS0WaNvNqeS7R_UI?usp=sharing)
 
 <p align="center">
   <img src="src/CropSight-US-Crop-Types.jpg" width="800">
